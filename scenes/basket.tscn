@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bvyu16rauxcsu"]
+
+[ext_resource type="PackedScene" uid="uid://c1q5rq3mmb604" path="res://assets/kenney_mini-market/Models/FBX format/shopping-basket.fbx" id="1_ccfdg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idgsc"]
+size = Vector3(1, 0.25183105, 0.34924316)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=817472099]
+
+[node name="shopping-basket" parent="." unique_id=1886892912 instance=ExtResource("1_ccfdg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1497132362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12445068, -0.00018310547)
+shape = SubResource("BoxShape3D_idgsc")

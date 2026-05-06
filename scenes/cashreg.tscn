@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d4makpbht4221"]
+
+[ext_resource type="PackedScene" uid="uid://d2rxeo4nbm4p8" path="res://assets/kenney_mini-market/Models/FBX format/cash-register.fbx" id="1_khknl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksmwr"]
+size = Vector3(0.88793945, 0.59716797, 0.8648071)
+
+[node name="cashreg" type="StaticBody3D" unique_id=531957883]
+
+[node name="cash-register" parent="." unique_id=1511664959 instance=ExtResource("1_khknl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=66469177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056030273, 0.29467773, 0.020843506)
+shape = SubResource("BoxShape3D_ksmwr")

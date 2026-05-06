@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://diklb1g0nvoy2"]
+
+[ext_resource type="ArrayMesh" uid="uid://buih3puoa7mj4" path="res://assets/kenney_city-kit-roads/Models/OBJ format/road-straight.obj" id="1_a202f"]
+
+[node name="Node3D" type="Node3D" unique_id=1042462203]
+
+[node name="RoadStraight" type="MeshInstance3D" parent="." unique_id=1517023781]
+transform = Transform3D(2.2392256, 0, 0, 0, 0.0750117, 0, 0, 0, 2.7128282, 1.3706911, -4.285781, -3.670238)
+mesh = ExtResource("1_a202f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoadStraight" unique_id=1147615509]
+transform = Transform3D(-0.68394977, 0, 0, 0, -46.62672, 0, 0, 0, -0.043084316, -1797.3834, -9322.168, -235.2109)

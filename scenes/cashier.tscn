@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dudfyb85u6v0x"]
+
+[ext_resource type="PackedScene" uid="uid://ct078vek6p1nr" path="res://assets/kenney_mini-market/Models/FBX format/character-employee.fbx" id="1_hp5mn"]
+
+[sub_resource type="Animation" id="Animation_qxk7m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-employee:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-employee:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yvugg"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-employee:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.03, 0), Vector3(0, -3.0000002e-12, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-employee:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.017453292, 0, 0.017453292), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw6i5"]
+_data = {
+&"RESET": SubResource("Animation_qxk7m"),
+&"idle": SubResource("Animation_yvugg")
+}
+
+[node name="Node3D" type="Node3D" unique_id=1545517681]
+
+[node name="character-employee" parent="." unique_id=1973885909 instance=ExtResource("1_hp5mn")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="character-employee" unique_id=565233337]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_xw6i5")

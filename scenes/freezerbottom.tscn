@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://gtogypvf1uwa"]
+
+[ext_resource type="PackedScene" uid="uid://c51qhxmawfqqt" path="res://assets/kenney_mini-market/Models/FBX format/freezer.fbx" id="1_nhyuq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1187d"]
+size = Vector3(1, 0.3519287, 0.60406494)
+
+[node name="freezerbottom" type="StaticBody3D" unique_id=1319977536]
+
+[node name="freezer" parent="." unique_id=1019524866 instance=ExtResource("1_nhyuq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=626088882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17694092, -0.00015258789)
+shape = SubResource("BoxShape3D_1187d")

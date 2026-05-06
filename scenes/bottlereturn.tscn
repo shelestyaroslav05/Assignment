@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cwgaa57nq30u4"]
+
+[ext_resource type="PackedScene" uid="uid://1akggv22i7ph" path="res://assets/kenney_mini-market/Models/FBX format/bottle-return.fbx" id="1_mnutx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkgsi"]
+size = Vector3(1, 1.1035767, 0.49279785)
+
+[node name="bottlereturn" type="StaticBody3D" unique_id=974147266]
+
+[node name="bottle-return" parent="." unique_id=448474199 instance=ExtResource("1_mnutx")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722189853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5473938, -0.028015137)
+shape = SubResource("BoxShape3D_vkgsi")

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bl55pdgm7w31e"]
+
+[ext_resource type="PackedScene" uid="uid://cjohid383vheq" path="res://assets/kenney_mini-market/Models/FBX format/shelf-end.fbx" id="1_5quo0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tlrg"]
+size = Vector3(0.80218506, 1.0534668, 0.40881348)
+
+[node name="bottlesshelf" type="StaticBody3D" unique_id=1724180906]
+
+[node name="shelf-end" parent="." unique_id=1441529940 instance=ExtResource("1_5quo0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1105929380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002105713, 0.52947605, -0.20135498)
+shape = SubResource("BoxShape3D_0tlrg")

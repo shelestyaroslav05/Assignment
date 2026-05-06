@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d1vjk7dww5vul"]
+
+[ext_resource type="PackedScene" uid="uid://cmy7hglwvvq5n" path="res://assets/kenney_mini-market/Models/FBX format/freezers-standing.fbx" id="1_x2cp1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02tvh"]
+size = Vector3(1, 0.9108887, 0.50335693)
+
+[node name="freezerstand" type="StaticBody3D" unique_id=1686398013]
+
+[node name="freezers-standing" parent="." unique_id=1211688272 instance=ExtResource("1_x2cp1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=749354986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4510498, -0.24832153)
+shape = SubResource("BoxShape3D_02tvh")

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b7lvrn25hhbfj"]
+
+[ext_resource type="PackedScene" uid="uid://cfbxv5xdlxi14" path="res://assets/kenney_mini-market/Models/FBX format/display-fruit.fbx" id="1_lfepc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yvtr8"]
+size = Vector3(1, 0.5175781, 0.6152344)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=116400897]
+
+[node name="display-fruit" parent="." unique_id=1640108352 instance=ExtResource("1_lfepc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=362871839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25683594, -0.001953125)
+shape = SubResource("BoxShape3D_yvtr8")

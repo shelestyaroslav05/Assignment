@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://da2dhbva1pj2x"]
+
+[ext_resource type="PackedScene" uid="uid://b4p6ojsk0m02i" path="res://assets/kenney_mini-market/Models/FBX format/shelf-boxes.fbx" id="1_j78ed"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5dmf0"]
+size = Vector3(0.8171387, 0.85035706, 0.71655273)
+
+[node name="shelfbox" type="StaticBody3D" unique_id=739310602]
+
+[node name="shelf-boxes" parent="." unique_id=1522878991 instance=ExtResource("1_j78ed")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=178625009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010986328, 0.43088531, -0.009155273)
+shape = SubResource("BoxShape3D_5dmf0")
