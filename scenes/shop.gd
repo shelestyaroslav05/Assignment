@@ -14,6 +14,9 @@ var checkout_text
 var yes_button
 var no_button
 
+var readme_panel
+var readme_open := true
+
 var budget := 0
 var has_basket := false
 var basket_items = []
@@ -50,11 +53,16 @@ func _ready():
 	yes_button = get_node("UI/CheckoutPanel/YesButton")
 	no_button = get_node("UI/CheckoutPanel/NoButton")
 
+	readme_panel = get_node("UI/ReadmePanel")
+
 	randomize()
 	budget = randi_range(12, 30)
 
 	shelf_panel.visible = false
 	checkout_panel.visible = false
+	readme_panel.visible = true
+	readme_open = true
+
 	message_label.text = ""
 
 	option_button_1.pressed.connect(func(): buy_item(0))
@@ -65,6 +73,34 @@ func _ready():
 	no_button.pressed.connect(_on_checkout_no_pressed)
 
 	update_budget_ui()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		if readme_open:
+			if event.keycode == KEY_1:
+				close_readme()
+			return
+
+		if shelf_panel.visible:
+			if event.keycode == KEY_1:
+				buy_item(0)
+			elif event.keycode == KEY_2:
+				buy_item(1)
+			elif event.keycode == KEY_3:
+				buy_item(2)
+			elif event.keycode == KEY_ESCAPE:
+				close_shelf_menu(active_shelf)
+
+		elif checkout_panel.visible:
+			if event.keycode == KEY_1:
+				_on_checkout_yes_pressed()
+			elif event.keycode == KEY_2:
+				_on_checkout_no_pressed()
+
+func close_readme():
+	readme_open = false
+	readme_panel.visible = false
 	show_message("Your budget today is €" + str(budget))
 
 func update_budget_ui():
@@ -74,6 +110,9 @@ func show_message(text: String):
 	message_label.text = text
 
 func take_basket():
+	if readme_open:
+		return
+
 	if has_basket:
 		show_message("You already have a basket.")
 		return
@@ -82,6 +121,9 @@ func take_basket():
 	show_message("You picked up a basket.")
 
 func open_shelf_from_types(shelf_name: String, types: Array, shelf_node = null):
+	if readme_open:
+		return
+
 	active_shelf = shelf_node
 	current_shelf_items.clear()
 
@@ -133,7 +175,9 @@ func buy_item(index: int):
 	close_shelf_menu(active_shelf)
 
 func open_checkout():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if readme_open:
+		return
+
 	checkout_panel.visible = true
 
 	yes_button.visible = true
@@ -221,24 +265,4 @@ func _on_checkout_no_pressed():
 	yes_button.text = "1. Yes"
 	no_button.text = "2. No"
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	show_message("Cashier: You can keep shopping.")
-
-func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		if shelf_panel.visible:
-			if event.keycode == KEY_1:
-				buy_item(0)
-			elif event.keycode == KEY_2:
-				buy_item(1)
-			elif event.keycode == KEY_3:
-				buy_item(2)
-			elif event.keycode == KEY_ESCAPE:
-				close_shelf_menu(active_shelf)
-
-		elif checkout_panel.visible:
-			if event.keycode == KEY_1:
-				_on_checkout_yes_pressed()
-			elif event.keycode == KEY_2:
-				_on_checkout_no_pressed()

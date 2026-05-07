@@ -93,6 +93,14 @@ texture = ExtResource("3_22ed1")
 [node name="PlayerCar" parent="Control/UI" unique_id=1116365906 instance=ExtResource("2_22ed1")]
 position = Vector2(960, 900)
 
+[node name="RestartButton" type="Button" parent="Control/UI" unique_id=1062766864]
+visible = false
+offset_left = 870.0
+offset_top = 600.0
+offset_right = 1050.0
+offset_bottom = 660.0
+text = "RESTART"
+
 [node name="Road" type="ColorRect" parent="Control" unique_id=827924994]
 layout_mode = 1
 offset_left = 710.0

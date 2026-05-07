@@ -6,6 +6,7 @@ var player
 var road
 var start_panel
 var start_button
+var restart_button
 var trip_progress
 var result_label
 var heart_1
@@ -38,6 +39,8 @@ func _ready():
 
 	start_panel = find_child("StartPanel", true, false)
 	start_button = find_child("StartButton", true, false)
+	restart_button = find_child("RestartButton", true, false)
+
 	trip_progress = find_child("TripProgress", true, false)
 	result_label = find_child("ResultLabel", true, false)
 
@@ -54,6 +57,9 @@ func _ready():
 
 	if start_button and not start_button.pressed.is_connected(_on_start_button_pressed):
 		start_button.pressed.connect(_on_start_button_pressed)
+
+	if restart_button and not restart_button.pressed.is_connected(_on_restart_button_pressed):
+		restart_button.pressed.connect(_on_restart_button_pressed)
 
 	if spawn_timer and not spawn_timer.timeout.is_connected(_on_spawn_timer_timeout):
 		spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -108,6 +114,9 @@ func reset_game_state():
 	if start_panel:
 		start_panel.visible = true
 
+	if restart_button:
+		restart_button.visible = false
+
 	update_hearts()
 	clear_obstacles()
 
@@ -125,12 +134,18 @@ func _process(delta):
 		win_game()
 
 func _on_start_button_pressed():
+	start_game()
+
+func start_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 	calculate_lanes_from_road()
 
 	if start_panel:
 		start_panel.visible = false
+
+	if restart_button:
+		restart_button.visible = false
 
 	if result_label:
 		result_label.visible = false
@@ -158,7 +173,8 @@ func _on_start_button_pressed():
 		spawn_timer.wait_time = 1.1
 		spawn_timer.start()
 
-	if game_music and game_music.stream != null and not game_music.playing:
+	if game_music and game_music.stream != null:
+		game_music.stop()
 		game_music.play()
 
 func _on_spawn_timer_timeout():
@@ -243,6 +259,9 @@ func lose_game():
 		result_label.visible = true
 		result_label.text = "GAME OVER"
 
+	if restart_button:
+		restart_button.visible = true
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func win_game():
@@ -255,7 +274,18 @@ func win_game():
 		result_label.visible = true
 		result_label.text = "YOU GOT HOME!"
 
+	if restart_button:
+		restart_button.visible = true
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _on_restart_button_pressed():
+	if game_music and game_music.playing:
+		game_music.stop()
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	get_tree().change_scene_to_file("res://scenes/shop.tscn")
 
 func is_game_active():
 	return game_running
